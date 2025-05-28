@@ -1,8 +1,44 @@
 // import { useParams } from 'react-router-dom';
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const ContactPage: React.FC = () => {
   const myRef = useRef<HTMLDivElement>(null);
+  const formRef= useRef(null);
+   const [height, setHeight] = useState(0);
+  const [formSent,setFormSent] = useState(false)
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+    const formValues = Object.fromEntries(formData);
+
+    try {
+      const response = await fetch("http://localhost:8000/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      });
+      if (response.ok) {
+        console.log("Form submitted successfully!");
+      } else {
+        console.error("Form submission failed.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+    setHeight(formRef.current.clientHeight);
+    setFormSent(true);
+
+  };
+
 
   return (
     <div id="contact" className="section" ref={myRef}>
@@ -16,13 +52,19 @@ const ContactPage: React.FC = () => {
         </div>
         <div className="corner-border">
           <div className="formholder">
-            <form className="contactform">
+{ !formSent ?
+            <form className="contactform" ref={formRef} onSubmit={handleSubmit}>
               <div className="label">
                 <label>Name</label>
               </div>
               <div className="emailholder">
                 <input
                   className="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   type="text"
                   placeholder="Name McNamerson"
                 ></input>
@@ -33,6 +75,11 @@ const ContactPage: React.FC = () => {
               <div className="emailholder">
                 <input
                   className="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   type="email"
                   placeholder="cool@example.com"
                 ></input>
@@ -43,6 +90,11 @@ const ContactPage: React.FC = () => {
               <div className="messageholder">
                 <textarea
                   className="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   placeholder="What do you think?"
                 ></textarea>
               </div>
@@ -61,6 +113,7 @@ const ContactPage: React.FC = () => {
                 </button>
               </div>
             </form>
+ :<div className="form-success" style={{height:`${height}px`}}><div className="success-msg"><h2 >Message Sent!</h2><p>I'll get back to you soon.</p></div></div> }
           </div>
         </div>
       </div>

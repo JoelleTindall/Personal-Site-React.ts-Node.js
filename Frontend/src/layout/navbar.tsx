@@ -1,33 +1,28 @@
-import React, { useRef,useEffect,useState } from "react";
+import { useRef, useState } from "react";
 import logo from "../assets/images/logo.png";
 import Hamburger from "./hamburger";
 
 const NavBar = () => {
-  const navRef= useRef(null);
-  const [height, setHeight] = useState(0);
+  const navRef = useRef(null);
+
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   const toggleHamburger = () => {
     setHamburgerOpen(!hamburgerOpen);
   };
 
-        useEffect(() => {
-          
-          setHeight(navRef.current.clientHeight); // or element.clientHeight, element.getBoundingClientRect().height
-        
-      }, []);
-
   return (
     <>
       <div className="navholder">
-        <nav ref={navRef}>
+        <nav id="stickynav" ref={navRef}>
           <div className="brand">
             <a href="/">
               <img src={logo}></img>
             </a>
           </div>
           <div className="links">
-            <a className="color1"
+            <a
+              className="color1"
               onClick={() => {
                 const element = document.getElementById("about");
                 element?.scrollIntoView({
@@ -38,7 +33,8 @@ const NavBar = () => {
               About
             </a>
 
-            <a className="color2"
+            <a
+              className="color2"
               onClick={() => {
                 const element = document.getElementById("projects");
                 element?.scrollIntoView({
@@ -48,7 +44,8 @@ const NavBar = () => {
             >
               Projects
             </a>
-            <a className="color3"
+            <a
+              className="color3"
               onClick={() => {
                 const element = document.getElementById("contact");
                 element?.scrollIntoView({
@@ -58,9 +55,14 @@ const NavBar = () => {
             >
               Contact
             </a>
-            <a className="color4" href="/otherstuff">Other Stuff</a>
+            <a className="color4" href="/otherstuff">
+              Other Stuff
+            </a>
 
-            <a className="color5" href="https://www.linkedin.com/in/joelle-tindall/">
+            <a
+              className="color5"
+              href="https://www.linkedin.com/in/joelle-tindall/"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -86,58 +88,9 @@ const NavBar = () => {
               </svg>
             </a>
           </div>
-
-          <div className="hamburger" onClick={toggleHamburger}>
-            <Hamburger children={hamburgerOpen} />
-          </div>
         </nav>
-<div
-  className={`dropdown ${hamburgerOpen ? "open" : ""}`}
-  style={hamburgerOpen ? { height: `calc(100vh - ${height}px)` } : {}}
->
-            <div className="link color1">
-            <a 
-              onClick={() => {
-                const element = document.getElementById("about");
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                }); toggleHamburger()
-              }}
-            >
-              About
-            </a>
-          </div>
-          <div className="link color2">
-            <a 
-              onClick={() => {
-                const element = document.getElementById("projects");
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                }); toggleHamburger()
-              }}
-            >
-              Projects
-            </a>
-          </div>
-          <div className="link color3">
- <a 
-              onClick={() => {
-                const element = document.getElementById("contact");
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                }); toggleHamburger()
-              }}
-            >
-              Contact
-            </a>
-          </div>
-          <div className="link color4" onClick={toggleHamburger}>
-            <a 
-
-            >
-              Other Stuff
-            </a>
-          </div>
+        <div className="hamburger" onClick={toggleHamburger}>
+          <Hamburger children={hamburgerOpen} />
         </div>
       </div>
     </>
