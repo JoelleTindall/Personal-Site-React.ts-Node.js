@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
 import logo from "../assets/images/logo.png";
 import Hamburger from "./hamburger";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+  const navigate = useNavigate();
   const navRef = useRef(null);
 
   const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -25,9 +27,13 @@ const NavBar = () => {
               className="color1"
               onClick={() => {
                 const element = document.getElementById("about");
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                });
+                if (element) {
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                } else {
+                  navigate("/#about");
+                }
               }}
             >
               About
@@ -37,9 +43,13 @@ const NavBar = () => {
               className="color2"
               onClick={() => {
                 const element = document.getElementById("projects");
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                });
+                if (element) {
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                } else {
+                  navigate("/#projects");
+                }
               }}
             >
               Projects
@@ -48,9 +58,14 @@ const NavBar = () => {
               className="color3"
               onClick={() => {
                 const element = document.getElementById("contact");
-                element?.scrollIntoView({
-                  behavior: "smooth",
-                });
+
+                if (element) {
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                } else {
+                  navigate("/#contact");
+                }
               }}
             >
               Contact

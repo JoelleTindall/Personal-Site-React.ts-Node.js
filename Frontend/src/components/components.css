@@ -528,3 +528,22 @@ form {
   padding-top: 10px;
   font-style: italic;
 }
+
+/* OtherStuff --------------------------------------------- */
+
+.underconstruction{
+  width:100%;
+  text-align: center;
+  /* display: block; */
+  /* flex-wrap: wrap; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* text-align: center; */
+  /* align-items: center; */
+
+}
+.underconstruction img{
+  margin:0 auto;
+max-width: 200px;
+
+}

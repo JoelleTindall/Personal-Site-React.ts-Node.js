@@ -1,17 +1,36 @@
-// const express = require('express');
-// const app = express();
-// const port = 8000;
+const express = require('express');
+const router = express.Router();
+require('dotenv').config();
+const nodemailer = require('nodemailer');
 
-// // Middleware to parse JSON request bodies
-// app.use(express.json());
-// // Middleware to parse URL-encoded request bodies
-// app.use(express.urlencoded({ extended: true }));
+//sends a very simple email from a designated email to a designated email
+router.post('/contact', (req,res)=>{
+const transporter = nodemailer.createTransport({
+  host: process.env.NODEMAILER_HOST,
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.NODEMAILER_USER,
+    pass: process.env.NODEMAILER_KEY,
+  },
+})
 
-// app.post('/submit', (req, res) => {
-//     console.log('Received form data:', req.body);
-//     res.status(200).send('Form data received!');
-// });
+  const mailOptions = {
+    from: process.env.NODEMAILER_FROM,
+    to: process.env.NODEMAILER_TO,
+    subject: `Message from ${req.body.email}`,
+    text: `Name: ${req.body.name}\nEmail: ${req.body.email}\n\nMessage:\n${req.body.message} `
+  }
 
-// app.listen(port, () => {
-//     console.log(`Server listening at http://localhost:${port}`);
-// });
+  transporter.sendMail(mailOptions, (error, info)=>{
+    if(error){
+      console.log(error);
+      res.send('error');
+    } else{
+      console.log('Email sent: ' + info.response)
+      res.status(200).send('Request successful');
+    }
+  })
+})
+
+module.exports = router;

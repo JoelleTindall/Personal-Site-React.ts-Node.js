@@ -1,4 +1,3 @@
-// import { useParams } from 'react-router-dom';
 import { useRef, useState } from "react";
 
 const ContactPage: React.FC = () => {
@@ -19,7 +18,7 @@ const ContactPage: React.FC = () => {
     const formValues = Object.fromEntries(formData);
 
     try {
-      const response = await fetch("http://localhost:8000/contact", {
+      const response = await fetch("http://localhost:8000/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
