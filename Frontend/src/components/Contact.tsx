@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 const ContactPage: React.FC = () => {
   const myRef = useRef<HTMLDivElement>(null);
-  const formRef= useRef(null);
+  const formRef= useRef<HTMLFormElement>(null);
    const [height, setHeight] = useState(0);
   const [formSent,setFormSent] = useState(false)
   const [formData, setFormData] = useState({

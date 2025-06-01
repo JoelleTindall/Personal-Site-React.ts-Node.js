@@ -12,3 +12,8 @@ todo (required):
 
 todo (for fun)
 - make more content for the site
+
+
+changes 6/1:
+
+-added image uploading (unfinished, but uploads project info and picture to db)

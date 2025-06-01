@@ -5,6 +5,7 @@ import AboutPage from "./components/About.tsx";
 import ProjectsPage from "./components/Projects.tsx";
 import ContactPage from "./components/Contact.tsx";
 import OtherPage from "./components/OtherStuff.tsx";
+import FileUpload from "./components/FileUpload.tsx";
 
 import Layout from "./layout/layout";
 
@@ -67,6 +68,13 @@ export default function App() {
             </Layout>
           }
         />
+        <Route 
+        path="/upload"
+        element={
+          <Layout>
+            <FileUpload/>
+          </Layout>
+        }/>
       </Routes>
     </BrowserRouter>
   );
