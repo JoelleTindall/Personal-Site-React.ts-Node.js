@@ -1,46 +1,46 @@
-import React, { useRef, useState } from 'react';
-import axios from 'axios';
-import type { ImageListType } from 'react-images-uploading';
-// import ImageUploading from "react-images-uploading";
-import ImageUploader from './Uploader';
+import React, { useRef, useState } from "react";
+import axios from "axios";
+import type { ImageListType } from "react-images-uploading";
+
+import ImageUploader from "./Uploader";
+import { Navigate } from "react-router-dom";
+
+
+
+
 const ContactPage: React.FC = () => {
+
   const myRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   const [formSent, setFormSent] = useState(false);
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [project_url, setProject_url] = useState("");
   const [images, setImages] = useState<ImageListType>([]);
-
-
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     description: "",
-//     image:""
-//   });
 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('description', description);
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("url", project_url);
     if (images[0]?.file) {
-      formData.append('image', images[0].file);
+      formData.append("image", images[0].file);
     }
 
     try {
-      await axios.post('http://localhost:8000/api/upload', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+      await axios.post("http://localhost:8000/api/upload", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      alert('Form submitted successfully!');
+      alert("Form submitted successfully!");
     } catch (error) {
-      console.error('Submission error:', error);
+      console.error("Submission error:", error);
     }
-  
- 
+
     setFormSent(true);
   };
 
@@ -61,12 +61,21 @@ const ContactPage: React.FC = () => {
                 <input
                   className="email"
                   name="name"
-                //   value={formData.name}
-                  onChange={(e) =>
-                    setTitle(e.target.value)
-                  }
+                  onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   placeholder="Project Name"
+                ></input>
+              </div>
+              <div className="label">
+                <label>URL</label>
+              </div>
+              <div className="emailholder">
+                <input
+                  className="email"
+                  name="url"
+                  onChange={(e) => setProject_url(e.target.value)}
+                  type="text"
+                  placeholder="Project URL"
                 ></input>
               </div>
               <div className="label">
@@ -76,14 +85,11 @@ const ContactPage: React.FC = () => {
                 <textarea
                   className="message"
                   name="description"
-                //   value={formData.description}
-                  onChange={(e) =>
-                    setDescription(e.target.value)
-                  }
+                  onChange={(e) => setDescription(e.target.value)}
                   placeholder="Project Description"
                 ></textarea>
               </div>
-              <ImageUploader images={images} setImages={setImages}/>
+              <ImageUploader images={images} setImages={setImages} />
               <div className="btnholder">
                 <button className="submitbtn" type="submit">
                   <svg

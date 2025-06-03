@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const { Pool } = require("pg");
 require("dotenv").config();
+const path = require("path");
 
 //db
 const pool = new Pool({
@@ -14,34 +15,52 @@ const pool = new Pool({
 });
 
 
-//multer  for file uploads
-const storage = multer.memoryStorage();
+//UPLOADING----------------------------------------
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images/"); // Directory to store images
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+  },
+});
+
 const upload = multer({ storage: storage });
 
-router.post('/upload', upload.single('image'), async (req, res) => {
-  const { title, description } = req.body;
+router.post("/upload", upload.single("image"), async (req, res) => {
+  const { title, description, url } = req.body;
   const imageFile = req.file;
 
   if (!imageFile) {
-    return res.status(400).send('Image file missing');
+    return res.status(400).send("Image file missing");
   }
 
   try {
-    const imageBuffer = imageFile.buffer;
-    const imageType = imageFile.mimetype;
+    const imageName = imageFile.filename;
 
     await pool.query(
-      `INSERT INTO projects (title, description, image_data, image_type)
+      `INSERT INTO projects (title, description, url, imagename)
        VALUES ($1, $2, $3, $4)`,
-      [title, description, imageBuffer, imageType]
+      [title, description, url, imageName]
     );
 
-    res.status(201).json({ message: 'Upload successful'});
+    res.status(201).json({ message: "Upload successful" });
   } catch (err) {
-    console.error('Database insert error', err);
-    res.status(500).send('Internal Server Error');
+    console.error("Database insert error", err);
+    res.status(500).send("Internal Server Error");
   }
 });
 
+//FETCHING----------------------------------------
+  router.get('/fetchprojects', async (req, res) => {
+    try {
+      const query = 'SELECT * FROM projects;';
+      const { rows } = await pool.query(query);
+      res.status(200).send(rows);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('failed');
+    }
+  });
 
 module.exports = router;

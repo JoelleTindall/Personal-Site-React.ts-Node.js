@@ -17,7 +17,11 @@
   font-size: 20px;
   background-color: rgb(217, 249, 249);
 }
-.upload__image-wrapper .uploadbtn:
+
+.upload__image-wrapper .uploadbtn:hover {
+  cursor: pointer;
+  font-weight: 700;
+}
 
 .upload__image-wrapper .image-item {
   display: flex;
@@ -29,6 +33,8 @@
 .upload__image-wrapper .image-item img {
   flex: 1;
   max-width: 50%;
+  width:50%;
+object-fit: contain;
   border: 10px solid rgba(0, 0, 0, 0.089);
 }
 

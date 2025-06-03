@@ -222,11 +222,8 @@ h1 {
 }
 
 .project-list {
-  /* display: flex; */
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* flex-wrap: wrap; */
-
   column-gap: 15px;
   row-gap: 15px;
   padding: 10px;
@@ -257,9 +254,7 @@ h1 {
   border: 8px solid #5d5707;
 }
 .project {
-  /* flex: 1 0 45%; */
   padding: 10px;
-  /* swidth:50%; */
   min-width: 45%;
   border: 8px solid #6ae0af;
   border-radius: 20px;
@@ -332,13 +327,11 @@ h1 {
 }
 
 .project a .project-image {
-  /* margin:0px 10px 10px 10px; */
   background-color: #9beecc;
   height: 100%;
   align-content: center;
   padding: 10px;
   border-radius: 20px;
-  /* border-top: 5px solid #eefff8; */
   transition: border-radius 200ms, margin 500ms, width 500ms, height 500ms,
     padding 500ms;
 }
@@ -403,8 +396,6 @@ h1 {
 .formholder {
   padding: 30px;
   height: 100%;
-
-  /* display: flex ; */
   width: 100%;
   border: 10px solid rgb(210, 143, 225);
   border-radius: 5px;
@@ -443,7 +434,6 @@ form {
   background-color: whitesmoke;
 }
 .messageholder {
-  /* border:2px solid black; */
 }
 .messageholder .message {
   padding: 10px;
@@ -455,7 +445,6 @@ form {
   background-color: whitesmoke;
 }
 .btnholder {
-  /* border:2px solid black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -470,8 +459,6 @@ form {
   border: none;
   border-radius: 5px;
   transition: width 200ms;
-  /* box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px; */
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
@@ -484,27 +471,18 @@ form {
 .btnholder .submitbtn:active {
   padding-top: 5px;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 0px inset;
-  /* box-shadow: none; */
 }
 
-.contactform .message {
-  /* display: inline-block; */
-  /* width: 90%; */
+.message {
   height: 150px;
   width: 100%;
   resize: none;
-  /* box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
-    border:none; */
 }
 
 .form-success {
-  /* width:100%; */
-
   display: flex;
   justify-content: center;
   align-items: center;
-  /* align-content: center; */
-  /* text-align: center;  */
 }
 .form-success .success-msg {
   background-color: #8acaea;
@@ -531,8 +509,8 @@ form {
 
 /* OtherStuff --------------------------------------------- */
 
-.underconstruction{
-  width:100%;
+.underconstruction {
+  width: 100%;
   text-align: center;
   /* display: block; */
   /* flex-wrap: wrap; */
@@ -540,10 +518,8 @@ form {
   /* justify-content: center; */
   /* text-align: center; */
   /* align-items: center; */
-
 }
-.underconstruction img{
-  margin:0 auto;
-max-width: 200px;
-
+.underconstruction img {
+  margin: 0 auto;
+  max-width: 200px;
 }
