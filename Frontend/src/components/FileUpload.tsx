@@ -3,7 +3,7 @@ import axios from "axios";
 import type { ImageListType } from "react-images-uploading";
 
 import ImageUploader from "./Uploader";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,7 +12,7 @@ const ContactPage: React.FC = () => {
 
   const myRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-
+  const navigate = useNavigate();
   const [formSent, setFormSent] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -20,6 +20,10 @@ const ContactPage: React.FC = () => {
   const [project_url, setProject_url] = useState("");
   const [images, setImages] = useState<ImageListType>([]);
 
+  const logOut=()=>{
+    localStorage.removeItem("token");
+    navigate('/');
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,7 +40,7 @@ const ContactPage: React.FC = () => {
       await axios.post("http://localhost:8000/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-      alert("Form submitted successfully!");
+      alert("Project has been uploaded.");
     } catch (error) {
       console.error("Submission error:", error);
     }
@@ -47,8 +51,8 @@ const ContactPage: React.FC = () => {
   return (
     <div id="otherstuff" className="section" ref={myRef}>
       <div className="header contact">
-        <h1>Other Stuff</h1>
-        <p>Look at all this stuff!</p>
+        <h1>Upload Project</h1>
+        <button onClick={logOut}>Log Out</button>
       </div>
       <div className="contentblock contact">
         <div className="formholder">

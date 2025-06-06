@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect,useState } from "react";
-import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 
 import AboutPage from "./components/About.tsx";
 import ProjectsPage from "./components/Projects.tsx";
@@ -13,22 +12,6 @@ import Layout from "./layout/layout";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 export default function App() {
-  // const user = null;
-
-  const [user, setUser] = useState<string | null>(null);
-
-      useEffect(() => {
-        console.log('Getting current user info...');
-        const token = localStorage.getItem('token');
-
-        if (token) {
-            const decoded = jwtDecode<{ userId: string;}>(token);
-            setUser(decoded.userId);
-  
-        }
-
-    }, []);
-
   useEffect(() => {
     const navHeight = document.getElementById("stickynav")?.clientHeight || 0;
     const sections = document.querySelectorAll<HTMLElement>("section[id]");
@@ -100,11 +83,11 @@ export default function App() {
         <Route
           path="/upload"
           element={
-       <ProtectedRoute user={user}>
+            <ProtectedRoute>
               <Layout>
                 <FileUpload />
               </Layout>
-              </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
       </Routes>

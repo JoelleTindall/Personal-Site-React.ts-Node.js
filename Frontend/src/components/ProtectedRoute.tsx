@@ -1,18 +1,48 @@
-import type { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
+import { useEffect, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-interface Props  {
-  user: "" | null;
+interface Props {
+
   children: ReactNode;
 }
 
-const ProtectedRoute: React.FC<Props> = ({ user, children }) => {
+const ProtectedRoute: React.FC<Props> = ({ children }) => {
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
+const navigate = useNavigate();
+  const validateToken = async () => {
+    const token = localStorage.getItem("token");
+    
+
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/validateToken",
+        {
+          headers: {
+            token_header_joelle: token ?? "", 
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error("Axios error:", error.response?.data || error.message);
+      } else {
+        console.error("Unknown error:", error);
+      }
+      navigate('/login');
+    }
+    
+  };
+
+   useEffect(() => {
+    validateToken();
+
+
+   });
+
   return children;
-
 };
 
 export default ProtectedRoute;

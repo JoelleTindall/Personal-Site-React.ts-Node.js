@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 
 function Login() {
   // state variables for user and pass
@@ -43,7 +42,7 @@ function Login() {
           throw new Error("Login failed");
         }
 
-        const data = await response.json(); // Parse the actual body from the response
+        const data = await response.json();
 
         const token = data.token;
         localStorage.setItem("token", token);  

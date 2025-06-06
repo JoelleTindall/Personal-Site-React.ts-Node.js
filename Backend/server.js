@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
+
 // Routes
 app.use("/api", contactRoutes);
 app.use("/api", projectRoutes);
@@ -26,3 +27,5 @@ app.use("/api", authRoutes);
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+

@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const router = express.Router();
+const bcrypt = require("bcrypt");
 const { Pool } = require("pg");
 require("dotenv").config();
 
@@ -13,26 +14,49 @@ const pool = new Pool({
   port: process.env.DB_PORT,
 });
 
+//this adds a user to the db but since I only need one user, it's commented out. leaving it here for posterity
+// const saltRounds = 10;
+// var username="user";
+// var password = "password";
+// bcrypt.hash(password, saltRounds, async function(err, hash) {
+//       await pool.query(
+//       `INSERT INTO users (username, passhash)
+//        VALUES ($1, $2)`,
+//       [username, hash]
+//     );
+// });
+
 // Generating JWT
 router.post("/generateToken", async (req, res) => {
-  // Validate User Here
-
   try {
-    const query = `SELECT username,userkey FROM users WHERE username='${req.body.username}' AND userkey='${req.body.password}'`;
+
+    //queries db
+    const query = `SELECT username, passhash FROM users WHERE username='${req.body.username}'`;
     const { rows } = await pool.query(query);
 
+    //continues if username exists
     if (rows.length == 1) {
-      // Then generate JWT Token
+      //compares password passed from form to hash in db
+      const password = req.body.password;
+      const hash = rows[0].passhash;
+      const checkPW = bcrypt.compare(password,hash);
 
-      let jwtSecretKey = process.env.JWT_SECRET_KEY;
-      let data = {
-        userId: rows[0].username,
-      };
+      //if it matches...
+      if (checkPW) {
+        // generate JWT Token
+        let jwtSecretKey = process.env.JWT_SECRET_KEY;
+        let data = {
+          userId: rows[0].username,
+        };
 
-      const token = jwt.sign({ userId: rows[0].username }, jwtSecretKey, {
-        expiresIn: "1h",
-      });
-      res.status(200).json({ token });
+        const token = jwt.sign({ userId: data.userId }, jwtSecretKey, {
+          expiresIn: "1h",
+        });
+        // finally send it to the frontend
+        res.status(200).json({ token });
+      } else {
+        res.status(500).send("failed");
+      }
     } else {
       res.status(500).send("failed");
     }
