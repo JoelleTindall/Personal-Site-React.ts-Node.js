@@ -8,6 +8,7 @@ interface Project {
   description: string;
   url: string;
   imagename: string;
+  category: string;
 }
 
 export default function ProjectsPage() {
@@ -43,7 +44,7 @@ export default function ProjectsPage() {
             {loading && <p>loadin...</p>}
             {!error ? (
               projects.map((project) => (
-                <div key={project.id} className="project">
+                <div  className={`project ${project.category}`} key={project.id}>
                   <a href={project.url}>
                     <div className="project-info">
                       <h3>{project.title}</h3>

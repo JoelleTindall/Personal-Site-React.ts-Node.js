@@ -54,7 +54,10 @@ router.post("/upload", upload.single("image"), async (req, res) => {
 //FETCHING----------------------------------------
   router.get('/fetchprojects', async (req, res) => {
     try {
-      const query = 'SELECT * FROM projects;';
+      const query = 'select p.*, c.category FROM projects p, categories c where p.categoryid = c.id ORDER BY p.id DESC';
+      
+      
+      // const query = 'SELECT * from projects'
       const { rows } = await pool.query(query);
       res.status(200).send(rows);
     } catch (err) {

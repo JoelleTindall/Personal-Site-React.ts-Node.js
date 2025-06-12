@@ -1,18 +1,14 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
 import type { ImageListType } from "react-images-uploading";
+import AdminControls from "./AdminControls";
 
 import ImageUploader from "./Uploader";
-import { useNavigate } from "react-router-dom";
 
-
-
-
-const ContactPage: React.FC = () => {
-
+const AdminArea: React.FC = () => {
   const myRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const navigate = useNavigate();
+  
   const [formSent, setFormSent] = useState(false);
 
   const [title, setTitle] = useState("");
@@ -20,10 +16,7 @@ const ContactPage: React.FC = () => {
   const [project_url, setProject_url] = useState("");
   const [images, setImages] = useState<ImageListType>([]);
 
-  const logOut=()=>{
-    localStorage.removeItem("token");
-    navigate('/');
-  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,7 +45,7 @@ const ContactPage: React.FC = () => {
     <div id="otherstuff" className="section" ref={myRef}>
       <div className="header contact">
         <h1>Upload Project</h1>
-        <button onClick={logOut}>Log Out</button>
+        <AdminControls/>
       </div>
       <div className="contentblock contact">
         <div className="formholder">
@@ -93,6 +86,9 @@ const ContactPage: React.FC = () => {
                   placeholder="Project Description"
                 ></textarea>
               </div>
+              <div className="label">
+                <label>Image Upload</label>
+              </div>
               <ImageUploader images={images} setImages={setImages} />
               <div className="btnholder">
                 <button className="submitbtn" type="submit">
@@ -122,4 +118,4 @@ const ContactPage: React.FC = () => {
     </div>
   );
 };
-export default ContactPage;
+export default AdminArea;
