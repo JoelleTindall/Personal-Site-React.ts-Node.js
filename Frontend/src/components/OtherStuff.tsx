@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import workcat from "../assets/images/workcat.gif";
-const ContactPage: React.FC = () => {
+const OtherPage: React.FC = () => {
   const myRef = useRef<HTMLDivElement>(null);
 
   return (
@@ -18,4 +18,4 @@ const ContactPage: React.FC = () => {
     </div>
   );
 };
-export default ContactPage;
+export default OtherPage;

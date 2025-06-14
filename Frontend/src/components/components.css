@@ -418,6 +418,11 @@ form {
   width: fit-content;
   padding: 2px;
 }
+
+.label h2{
+  margin:0 auto;
+  font-weight: 700;
+}
 .emailholder {
   margin-bottom: 10px;
 }
@@ -523,3 +528,51 @@ form {
   margin: 0 auto;
   max-width: 200px;
 }
+
+/* Admin --------------------------------------------- */
+
+.project-edit{
+  display:grid;
+  grid-template-columns: 1fr;
+  
+}
+
+.project-edit-buttons{
+display: flex;
+  grid-template-columns: auto 1fr;
+
+  align-items: center;
+
+ 
+
+  padding: 10px;
+
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-edit-buttons button{
+  width:49%;
+   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+   height:50px;
+}
+
+.project-edit-buttons button:hover{
+cursor: pointer;
+}
+
+.project-link{
+  height:min-content;
+}
+
+.project .project-link .project-image{
+  height:initial;
+  
+}
+
+.project-link:hover{
+cursor: initial;
+padding-left:initial;
+
+}
+

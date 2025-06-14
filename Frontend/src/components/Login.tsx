@@ -47,7 +47,7 @@ function Login() {
         const token = data.token;
         localStorage.setItem("token", token);  
 
-        navigate("/upload");
+        navigate("/admin");
       })
       .catch((error) => {
         console.error(error);

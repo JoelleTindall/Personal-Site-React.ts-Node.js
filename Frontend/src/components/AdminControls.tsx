@@ -1,16 +1,24 @@
-// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const AdminControls: React.FC = () => {
+   interface Props {
+     onSelection: (value: string) => void;
+   }
+
+const AdminControls: React.FC<Props> = ({onSelection}) => {
  const navigate = useNavigate();
     const logOut = () => {
       localStorage.removeItem("token");
       navigate("/");
     };
+
+      const handleClick = (selection:string) => {
+    onSelection(selection);
+  };
   return (
     <div>
-      <button>Upload Project</button>
-      <button>Edit/Remove Project</button>
+      <button onClick={()=>handleClick("upProject")}>Upload Project</button>
+      <button onClick={()=>handleClick("editProject")}>Edit/Remove Project</button>
+      <button onClick={()=>handleClick("upResume")}>Upload Resume</button>
       <button onClick={logOut}>Log Out</button>
 
     </div>

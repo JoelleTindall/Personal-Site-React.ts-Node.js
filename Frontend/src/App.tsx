@@ -5,7 +5,7 @@ import AboutPage from "./components/About.tsx";
 import ProjectsPage from "./components/Projects.tsx";
 import ContactPage from "./components/Contact.tsx";
 import OtherPage from "./components/OtherStuff.tsx";
-import FileUpload from "./components/FileUpload.tsx";
+import FileUpload from "./components/Admin.tsx";
 import Login from "./components/Login.tsx";
 
 import Layout from "./layout/layout";
@@ -81,7 +81,7 @@ export default function App() {
         />
 
         <Route
-          path="/upload"
+          path="/admin"
           element={
             <ProtectedRoute>
               <Layout>
