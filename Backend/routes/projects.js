@@ -29,7 +29,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.post("/upload", upload.single("image"), async (req, res) => {
-  const { title, description, url } = req.body;
+  const { title, description, url, categoryid } = req.body;
   const imageFile = req.file;
 
   if (!imageFile) {
@@ -40,9 +40,9 @@ router.post("/upload", upload.single("image"), async (req, res) => {
     const imageName = imageFile.filename;
 
     await pool.query(
-      `INSERT INTO projects (title, description, url, imagename)
-       VALUES ($1, $2, $3, $4)`,
-      [title, description, url, imageName]
+      `INSERT INTO projects (title, description, url, imagename, categoryid)
+       VALUES ($1, $2, $3, $4, $5)`,
+      [title, description, url, imageName, categoryid]
     );
 
     res.status(201).json({ message: "Upload successful" });
@@ -53,6 +53,8 @@ router.post("/upload", upload.single("image"), async (req, res) => {
 });
 
 //RETRIEVE----------------------------------------
+
+//gets projects for project page and admin side
 router.get("/fetchprojects", async (req, res) => {
   try {
     const query =
@@ -66,9 +68,23 @@ router.get("/fetchprojects", async (req, res) => {
   }
 });
 
+//gets categories for projects
+router.get("/fetchcategories", async (req, res) => {
+  try {
+    const query =
+      "select * FROM categories";
+
+    const { rows } = await pool.query(query);
+    res.status(200).send(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("failed");
+  }
+});
+
 //UPDATE------------------------------------------
 router.post("/update", upload.single("image"), async (req, res) => {
-  const { id, title, description, url } = req.body;
+  const { id, title, description, url, categoryid } = req.body;
 
   try {
     // get old image name
@@ -104,8 +120,8 @@ router.post("/update", upload.single("image"), async (req, res) => {
 
     // perform update
     await pool.query(
-      `UPDATE projects SET title=$2, description=$3, url=$4, imagename=$5 WHERE id = $1`,
-      [id, title, description, url, image]
+      `UPDATE projects SET title=$2, description=$3, url=$4, imagename=$5, categoryid=$6 WHERE id = $1`,
+      [id, title, description, url, image, categoryid]
     );
 
     res.status(201).json({ message: "Update successful" });

@@ -1,12 +1,12 @@
---drop table categories;
+--DROP TABLE categories;
 --DROP TABLE projects;
 --DROP TABLE users;
 
-create table categories (
-  id Serial primary key,
-  category text not null);
+CREATE TABLE categories (
+  id Serial PRIMARY KEY,
+  category text NOT NULL);
 
-INSERT INTO categories (category) values 
+INSERT INTO categories (category) VALUES 
   ('other'),
   ('playdate');
 
@@ -14,13 +14,14 @@ CREATE TABLE projects (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
   description TEXT NOT NULL,
-  url text,
-  imagename text not null,
-  categoryid int,
+  url text NOT NULL,
+  imagename text NOT null,
+  categoryid int NOT NULL,
   CONSTRAINT fk_categories FOREIGN KEY (categoryid)
   REFERENCES categories(id)
 );
 
+ALTER TABLE projects ALTER COLUMN categoryid SET DEFAULT 1;
 
 INSERT INTO projects (title,description,imagename,url,categoryid) VALUES
 	 ('Touch Egg','A silly little game for the Playdate. Won 3 nominations! Name is self explanatory','1748896733866.png','https://play.date/games/touch-egg/',2),

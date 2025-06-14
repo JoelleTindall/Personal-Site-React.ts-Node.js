@@ -1,22 +1,47 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import type { ImageListType } from "react-images-uploading";
 import ImageUploader from "./Uploader";
 
-const FileUpload: React.FC = () => {
+interface Category {
+  id: string;
+  category: string;
+}
+
+const ProjectUpload: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const [formSent, setFormSent] = useState(false);
-
+  const [error, setError] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [project_url, setProject_url] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("1");
   const [images, setImages] = useState<ImageListType>([]);
+const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+       
+        const res = await axios.get("http://localhost:8000/api/fetchcategories");
+        setCategories(res.data);
+      
+      } catch {
+       
+        setError(true);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("categoryid",selectedCategory)
     formData.append("title", title);
     formData.append("description", description);
     formData.append("url", project_url);
@@ -43,6 +68,19 @@ const FileUpload: React.FC = () => {
       </div>
       {!formSent ? (
         <form className="projectform" ref={formRef} onSubmit={handleSubmit}>
+          <div className="label">
+            <label>Category</label>
+          </div>
+          <div className="emailholder">
+            {!error ? (
+            <select onChange={(e) => setSelectedCategory(e.target.value)}>
+              {categories.map((category) => (
+              <option value={category.id} key={category.id}>{category.category}</option>
+              ))}
+            </select>
+            ):(<p>Couldn't get categories..</p>)}
+          </div>
+
           <div className="label">
             <label>Name</label>
           </div>
@@ -108,4 +146,4 @@ const FileUpload: React.FC = () => {
     </div>
   );
 };
-export default FileUpload;
+export default ProjectUpload;

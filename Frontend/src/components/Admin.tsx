@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import AdminControls from "./AdminControls";
 
-import FileUpload from "./FileUpload";
+import FileUpload from "./ProjectUpload";
 import ManageProjects from "./ManageProjects";
 import UploadResume from "./UploadResume";
 
