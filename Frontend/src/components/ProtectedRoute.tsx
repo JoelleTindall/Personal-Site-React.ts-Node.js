@@ -16,7 +16,7 @@ const navigate = useNavigate();
 
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/validateToken",
+        "/api/validateToken",
         {
           headers: {
             token_header_joelle: token ?? "", 

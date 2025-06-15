@@ -20,10 +20,14 @@ export default function ProjectsPage() {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:8000/api/fetchprojects");
+        const res = await axios.get("/api/fetchprojects");
+        if (!Array.isArray(res.data)) {
+          throw new Error("Invalid projects data");
+        }
         setProjects(res.data);
         setLoading(false);
-      } catch {
+      } catch (error) {
+        console.error("Failed to fetch projects:", error); // 👈 optional for debugging
         setLoading(false);
         setError(true);
       }
@@ -44,7 +48,7 @@ export default function ProjectsPage() {
             {loading && <p>loadin...</p>}
             {!error ? (
               projects.map((project) => (
-                <div  className={`project ${project.category}`} key={project.id}>
+                <div className={`project ${project.category}`} key={project.id}>
                   <a href={project.url}>
                     <div className="project-info">
                       <h3>{project.title}</h3>

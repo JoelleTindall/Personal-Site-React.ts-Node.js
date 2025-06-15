@@ -26,4 +26,5 @@ dist-ssr
 db.env
 prod_init.sql
 *.yml
+Dockerfile
 

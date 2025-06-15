@@ -10,6 +10,7 @@ import Login from "./components/Login.tsx";
 
 import Layout from "./layout/layout";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import NotFound from "./components/NotFound.tsx";
 
 export default function App() {
   useEffect(() => {
@@ -90,6 +91,8 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

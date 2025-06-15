@@ -38,7 +38,7 @@ export default function ManageProjects() {
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/fetchprojects");
+      const res = await axios.get("/api/fetchprojects");
       setProjects(res.data);
       setLoading(false);
     } catch {
@@ -51,7 +51,7 @@ export default function ManageProjects() {
     const fetchCategories = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/fetchcategories"
+          "/api/fetchcategories"
         );
         setCategories(res.data);
       } catch {
@@ -79,7 +79,7 @@ export default function ManageProjects() {
 
   const removeProject = async (project: Project) => {
     axios
-      .post("http://localhost:8000/api/delete", {
+      .post("/api/delete", {
         id: project.id,
         img: project.imagename,
       })
@@ -116,7 +116,7 @@ export default function ManageProjects() {
     }
 
     try {
-      await axios.post("http://localhost:8000/api/update", formData, {
+      await axios.post("/api/update", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Project has been updated.");

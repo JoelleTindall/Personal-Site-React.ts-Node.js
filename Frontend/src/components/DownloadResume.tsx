@@ -3,7 +3,7 @@ import axios from "axios";
 const DownloadButton: React.FC = () => {
   const downloadFile = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/downresume", {
+      const response = await axios.get("/api/downresume", {
         responseType: "blob",
       });
 
@@ -30,7 +30,15 @@ const DownloadButton: React.FC = () => {
   return (
     <>
       <a onClick={downloadFile}>
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 -960 960 960"><path d="M160-80v-80h640v80zm320-160L200-600h160v-280h240v280h160zm0-130 116-150h-76v-280h-80v280h-76zm0-150"/></svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 -960 960 960"
+        >
+          <path d="M160-80v-80h640v80zm320-160L200-600h160v-280h240v280h160zm0-130 116-150h-76v-280h-80v280h-76zm0-150" />
+        <title>Download Resume</title>
+        </svg>
       </a>
     </>
   );

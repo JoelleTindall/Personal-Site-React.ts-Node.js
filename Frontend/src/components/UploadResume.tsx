@@ -23,7 +23,7 @@ const UploadResume: React.FC = () => {
       formData.append('file', file);
 
     try {
-      await axios.post("http://localhost:8000/api/upresume", formData, {
+      await axios.post("/api/upresume", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setStatus('success');

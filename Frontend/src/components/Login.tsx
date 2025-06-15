@@ -27,7 +27,7 @@ function Login() {
 
     setError("");
 
-    fetch("http://localhost:8000/api/generateToken", {
+    fetch("/api/generateToken", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

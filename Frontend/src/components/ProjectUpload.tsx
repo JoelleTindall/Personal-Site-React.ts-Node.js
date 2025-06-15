@@ -24,7 +24,7 @@ const [categories, setCategories] = useState<Category[]>([]);
     const fetchCategories = async () => {
       try {
        
-        const res = await axios.get("http://localhost:8000/api/fetchcategories");
+        const res = await axios.get("/api/fetchcategories");
         setCategories(res.data);
       
       } catch {
@@ -50,7 +50,7 @@ const [categories, setCategories] = useState<Category[]>([]);
     }
 
     try {
-      await axios.post("http://localhost:8000/api/upload", formData, {
+      await axios.post("/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("Project has been uploaded.");
