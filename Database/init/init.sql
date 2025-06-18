@@ -29,7 +29,7 @@ INSERT INTO projects (title,description,imagename,url,categoryid) VALUES
 	 ('RPSB','My 3rd silly little game for the Playdate. Mix and mash together rocks, papers, and scissors to create explosions.','1748972401481.png','https://play.date/games/rock-paper-scissors-boom/',2),
 	 ('Chat App','A simple chat application built with React, .NET Core, and Postgres','1748972468313.gif','https://github.com/JoelleTindall/.NET-Core-React-Postgres-ChatApp',1),
 	 ('PHP Storefront','A very bare bones storefront application built with PHP, JavaScript, and MySQL','1748972546858.gif','https://github.com/JoelleTindall/Simple-PHP-MySQL-JS-Web-App',1),
-	 ('My Site!','Yes, I made this website with React, Nodejs, and Postgres! (placeholder image)','1748972647201.gif','/',1);
+	 ('My Site!','Yes, I made this website with React, NGINX, Nodejs, Postgres and Docker!','1750278805209.gif','/',1);
 
 
 CREATE TABLE users (
