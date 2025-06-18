@@ -1,7 +1,8 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const multer = require("multer");
-require("dotenv").config();
+import "dotenv/config.js";
+import multer from "multer";
+
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -22,4 +23,4 @@ router.post("/upresume", upload.single('file'), (req, res) => {
 
 router.get('/downresume', (req, res) => res.download('public/files/Resume.pdf'))
 
-module.exports = router;
+export default router;

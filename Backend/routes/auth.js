@@ -1,9 +1,10 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
+import express from 'express';
 const router = express.Router();
-const bcrypt = require("bcrypt");
-const { Pool } = require("pg");
-require("dotenv").config();
+import "dotenv/config.js";
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import { Pool } from "pg";
+
 
 //db
 const pool = new Pool({
@@ -15,14 +16,14 @@ const pool = new Pool({
 });
 
 //this adds a user to the db but since I only need one user, it's commented out. leaving it here for posterity
-// const saltRounds = 10;
+//  const saltRounds = 10;
 // var username="user";
 // var password = "password";
 // bcrypt.hash(password, saltRounds, async function(err, hash) {
 //       await pool.query(
-//       `INSERT INTO users (username, passhash)
-//        VALUES ($1, $2)`,
-//       [username, hash]
+//       `INSERT INTO users (id, username, passhash)
+//        VALUES ($1, $2, $3)`,
+//       [2,username, hash]
 //     );
 // });
 
@@ -39,8 +40,10 @@ router.post("/generateToken", async (req, res) => {
       //compares password passed from form to hash in db
       const password = req.body.password;
       const hash = rows[0].passhash;
-      const checkPW = bcrypt.compare(password,hash);
 
+      
+      const checkPW = await bcrypt.compare(password,hash);
+  
       //if it matches...
       if (checkPW) {
         // generate JWT Token
@@ -55,39 +58,36 @@ router.post("/generateToken", async (req, res) => {
         // finally send it to the frontend
         res.status(200).json({ token });
       } else {
-        res.status(500).send("failed");
+        res.status(500).send("Bad login");
       }
     } else {
-      res.status(500).send("failed");
+      res.status(500).send("Bad user/password");
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send("failed");
+    res.status(500).send("couldn't connect to db");
   }
 });
 
 // Verification of JWT
 router.get("/validateToken", (req, res) => {
-  // Tokens are generally passed in header of request
-  // Due to security reasons.
+  const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
-  let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
-  let jwtSecretKey = process.env.JWT_SECRET_KEY;
+  const authHeader = req.headers['authorization']; // header keys are lowercase
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) {
+    console.log("No token found in Authorization header");
+    return res.status(401).json({ message: "Token missing" });
+  }
 
   try {
-    const token = req.header(tokenHeaderKey);
-
     const verified = jwt.verify(token, jwtSecretKey);
-    if (verified) {
-      return res.send("Successfully Verified");
-    } else {
-      // Access Denied
-      return res.status(401).send(error);
-    }
+    return res.send("Successfully Verified");
   } catch (error) {
-    // Access Denied
-    return res.status(401).send(error);
+    console.log("JWT verification error:", error.message);
+    return res.status(401).json({ message: error.message });
   }
 });
 
-module.exports = router;
+export default router;

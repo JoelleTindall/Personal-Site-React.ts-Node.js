@@ -1,17 +1,19 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const path = require('path');
-const contactRoutes = require("./routes/contact");
-const projectRoutes = require("./routes/projects");
-const resumeRoutes = require("./routes/resume");
-const authRoutes = require("./routes/auth");
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import contactRoutes from "./routes/contact.js";
+import projectRoutes from "./routes/projects.js";
+import resumeRoutes from "./routes/resume.js";
+import authRoutes from "./routes/auth.js";
 //  const { createProxyMiddleware } = require('http-proxy-middleware');
 const app = express();
-const HOST = process.env.HOST;
+const HOST = process.env.HOST; 
  const PORT = process.env.PORT;
 
-
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename); // get the name of the directory
 
 // Middleware
 app.use(cors());

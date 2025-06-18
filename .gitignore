@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+data
 
 # Editor directories and files
 .vscode/*
@@ -23,8 +24,8 @@ dist-ssr
 *.sln
 *.sw?
 .env
-db.env
+
 prod_init.sql
-*.yml
-Dockerfile
+
+
 

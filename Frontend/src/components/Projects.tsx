@@ -27,7 +27,7 @@ export default function ProjectsPage() {
         setProjects(res.data);
         setLoading(false);
       } catch (error) {
-        console.error("Failed to fetch projects:", error); // 👈 optional for debugging
+        console.error("Failed to fetch projects:", error);
         setLoading(false);
         setError(true);
       }
@@ -56,7 +56,7 @@ export default function ProjectsPage() {
                     </div>
                     <div className="project-image">
                       <img
-                        src={`http://localhost:8000/public/images/${project.imagename}`}
+                        src={`/api/images/${project.imagename}`}
                       ></img>
                     </div>
                   </a>

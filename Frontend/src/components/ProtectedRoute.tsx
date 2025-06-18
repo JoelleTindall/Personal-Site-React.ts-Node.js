@@ -13,13 +13,12 @@ const navigate = useNavigate();
   const validateToken = async () => {
     const token = localStorage.getItem("token");
     
-
+    console.log(token);
     try {
-      const response = await axios.get(
-        "/api/validateToken",
+      const response = await axios.get("/api/validateToken",
         {
           headers: {
-            token_header_joelle: token ?? "", 
+            Authorization: `Bearer ${token}`,
           },
         }
       );

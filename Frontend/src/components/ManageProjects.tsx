@@ -72,7 +72,7 @@ export default function ManageProjects() {
       setProject_url(selectedProject.url);
       setSelectedCategory(selectedProject.categoryid)
 
-      const backendImg = `http://localhost:8000/public/images/${selectedProject.imagename}`;
+      const backendImg = `/api/images/${selectedProject.imagename}`;
       setImages([{ data_url: backendImg }]);
     }
   }, [selectedProject]);
@@ -98,7 +98,7 @@ export default function ManageProjects() {
   const editProject = (project: Project) => {
     setSelectedProject(project);
 
-    const backendImg = `http://localhost:8000/public/images/${project.imagename}`;
+    const backendImg = `/api/images/${project.imagename}`;
     setImages([{ data_url: backendImg }]);
   };
 
@@ -234,7 +234,7 @@ export default function ManageProjects() {
                   </div>
                   <div className="project-image">
                     <img
-                      src={`http://localhost:8000/public/images/${project.imagename}`}
+                      src={`/api/images/${project.imagename}`}
                     ></img>
                   </div>
                 </a>

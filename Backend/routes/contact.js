@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-require('dotenv').config();
-const nodemailer = require('nodemailer');
+import "dotenv/config.js";
+import nodemailer from 'nodemailer';
 
 //sends a very simple email from a designated email to a designated email
 router.post('/contact', (req,res)=>{
@@ -33,4 +33,4 @@ const transporter = nodemailer.createTransport({
   })
 })
 
-module.exports = router;
+export default router;

@@ -46,7 +46,6 @@ function Login() {
 
         const token = data.token;
         localStorage.setItem("token", token);  
-
         navigate("/admin");
       })
       .catch((error) => {

@@ -37,3 +37,5 @@ CREATE TABLE users (
   username text unique not null,
   passhash text not null
 );
+
+INSERT INTO users (username, passhash) VALUES('user', '$2b$10$at0zJX/krW9x91b4xY0fhuOtm4MXt74reRE5/nCj4X2eCd4FBk4Na');

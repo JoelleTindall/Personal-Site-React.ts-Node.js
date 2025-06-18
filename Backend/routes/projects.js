@@ -1,11 +1,12 @@
-const express = require("express");
+import express from 'express';
 const router = express.Router();
-const multer = require("multer");
-const crypto = require("crypto");
-const fs = require("fs");
-const { Pool } = require("pg");
-require("dotenv").config();
-const path = require("path");
+import "dotenv/config.js";
+import multer from "multer";
+import crypto from "crypto";
+import fs from "fs";
+import { Pool } from "pg";
+
+import path from "path";
 
 //db
 const pool = new Pool({
@@ -175,4 +176,4 @@ router.post("/delete", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

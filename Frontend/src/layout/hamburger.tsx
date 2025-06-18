@@ -51,37 +51,52 @@ const Hamburger: React.FC<Props> = () => {
       >
         <div
           className="link color1"
-          onClick={() => {
-            const element = document.getElementById("about");
-            element?.scrollIntoView({
-              behavior: "smooth",
-            });
-            toggleMenu();
-          }}
+              onClick={() => {
+                const element = document.getElementById("about");
+
+                if (element) {
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                } else {
+                  navigate("/#about");
+                }
+                toggleMenu();
+              }}
         >
           <a>About</a>
         </div>
         <div
           className="link color2"
-          onClick={() => {
-            const element = document.getElementById("projects");
-            element?.scrollIntoView({
-              behavior: "smooth",
-            });
-            toggleMenu();
-          }}
+              onClick={() => {
+                const element = document.getElementById("projects");
+
+                if (element) {
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                } else {
+                  navigate("/#projects");
+                }
+                toggleMenu();
+              }}
         >
           <a>Projects</a>
         </div>
         <div
           className="link color3"
-          onClick={() => {
-            const element = document.getElementById("contact");
-            element?.scrollIntoView({
-              behavior: "smooth",
-            });
-            toggleMenu();
-          }}
+              onClick={() => {
+                const element = document.getElementById("contact");
+
+                if (element) {
+                  element?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                } else {
+                  navigate("/#contact");
+                }
+                toggleMenu();
+              }}
         >
           <a>Contact</a>
         </div>
