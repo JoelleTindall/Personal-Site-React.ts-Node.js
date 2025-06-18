@@ -24,7 +24,7 @@ data
 *.sln
 *.sw?
 .env
-
+.yml
 prod_init.sql
 
 
