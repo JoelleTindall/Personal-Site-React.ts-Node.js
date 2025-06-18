@@ -190,11 +190,16 @@ a:hover {
     #ffccea 0 83%,
     #eefff8 0 100%
   );
+    min-height: 100vh;    
+    display: flex;
+    flex-direction: column;
+    
 }
 
 /* FOOTER ------------------------------------------------ */
 
 footer {
+  margin-top:auto;
   justify-content: center;
   width: 100%;
   color: white;

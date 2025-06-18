@@ -374,6 +374,24 @@ h1 {
   }
 }
 
+@media (max-width: 380px) {
+  .project-list .project a .project-image img {
+    min-height: 100%;
+  }
+
+  h1 {
+    font-size: 10cqw;
+  }
+
+  .skill {
+    margin:5px;
+  }
+
+  .corner-border .formholder {
+    padding:12px;
+  }
+}
+
 /* CONTACT --------------------------------------------- */
 .contact {
   background-color: #faf5eb;
@@ -444,6 +462,7 @@ form {
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
     rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   background-color: whitesmoke;
+  max-width: 100%;
 }
 .messageholder {
 }

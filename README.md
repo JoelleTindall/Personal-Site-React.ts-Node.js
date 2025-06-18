@@ -11,12 +11,13 @@ todo:
 - test thouroughly on mobile screens (should be responsive already, though)
 - allow blocks of content to be added on client side while logged in as admin ('Other stuff' page)
 - same with css changes
+- pretty up the admin side (namely the nav buttons)
 
 ----------------------------------------
 Known issues to fix...
 
     - mobile view is off (at least on an iphone 13 mini)
-        - notably.. contact form inputs, click states, and dropdown/hamburger menu
+        - notably..  click states, and dropdown/hamburger menu
     - contact form button can be spammed while sending email.
     - project upload form should just display an alert on successful submission and clear fields instead of hiding the form
 

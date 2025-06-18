@@ -24,8 +24,8 @@ data
 *.sln
 *.sw?
 .env
-.yml
 prod_init.sql
 
 
 
+docker-compose.yml
