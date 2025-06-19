@@ -5,6 +5,11 @@ h1 {
   max-width: 100%;
 }
 
+p:hover,
+h1:hover {
+  cursor: default;
+}
+
 .section {
   padding-bottom: 30px;
   padding-top: 20px;
@@ -38,7 +43,7 @@ h1 {
 }
 
 .header h1 {
-  text-shadow:2px 2px 5px #aaa; 
+  text-shadow: 2px 2px 5px #aaa;
 }
 
 .subheader h1 {
@@ -67,8 +72,8 @@ h1 {
 
   border: 10px solid rgb(99, 220, 205);
   border-radius: 50px;
-  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
-    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
 }
 
 .corner-border {
@@ -82,6 +87,7 @@ h1 {
   margin: 30px auto;
   margin-top: 0;
   border-radius: 5px;
+  box-sizing: border-box;
 }
 
 .corner-border::before,
@@ -127,6 +133,11 @@ h1 {
   background-color: white;
 }
 
+.me {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+}
+
 .textblock {
   height: 100%;
   width: 100%;
@@ -143,10 +154,7 @@ h1 {
   border: 7px solid #cdc1ff;
   border-radius: 0 20px 20px 20px;
   width: fit-content;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 20px;
   background-color: #eef1ff;
   color: rgba(0, 0, 0, 0.7);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -155,6 +163,7 @@ h1 {
 
 .textblock p:hover {
   border: 7px solid #a196ca;
+  cursor: default;
 }
 
 .textblock a {
@@ -182,8 +191,76 @@ h1 {
   background-size: 0 3px, 100% 3px;
 }
 
+.about-icons {
+  padding: 10px;
+  border: 7px solid #cdc1ff;
+  border-radius: 0 20px 20px 20px;
+  margin: 20px;
+  background-color: #eef1ff;
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  /* max-width: 100%; */
+  /* width: calc(100% - 39.4px); */
+}
+.about-icons .about-icon-holder {
+  display: flex;
+  flex-wrap: nowrap;
+  width:100%;
+  text-align: center;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  
+}
+
+.about-icons .about-icon-holder div{
+  flex:1;
+    min-width: 33.33%;
+  max-width: 33.33%;
+  /* width:100%; */
+  padding:10px;
+  border-radius: 20px;
+  
+}
+
+.about-icon-holder figcaption {
+  font-weight: 500;
+  font-size: 1.125rem;
+}
+
+.about-icons a {
+  background: initial;
+ 
+}
+
+.about-icons .about-icon-holder div{
+  border: 2px solid rgba(255, 255, 255, 0);
+     transition: box-shadow 200ms, background-color 200ms, transform 200ms, border 200ms;
+     
+}
+.about-icons .about-icon-holder div svg{
+     transition: color 1000ms;
+     max-height: 150px;
+     
+}
 
 
+.about-icon-holder div:hover{
+     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  /* background-color: rgba(255, 255, 255, 0.452); */
+  transform: rotate(2deg);
+  border: 2px solid #fb67cc;
+    /* svg{ color:blue}; */
+    }
+
+.about-icons a svg {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  color: black;
+  opacity: 85%;
+}
 
 .skills {
   display: flex;
@@ -383,12 +460,27 @@ h1 {
     font-size: 10cqw;
   }
 
+  h1 svg {
+    width:10cqw;
+  }
+
   .skill {
-    margin:5px;
+    margin: 5px;
+    padding:5px;
   }
 
   .corner-border .formholder {
-    padding:12px;
+    padding: 12px;
+  }
+
+  .textblock p {
+    margin:8px;
+    font-size: 1rem;
+    /* text-align: center; */
+  }
+
+  .textblock .about-icons{
+    margin:8px;
   }
 }
 
@@ -444,8 +536,8 @@ form {
   padding: 2px;
 }
 
-.label h2{
-  margin:0 auto;
+.label h2 {
+  margin: 0 auto;
   font-weight: 700;
 }
 .emailholder {
@@ -557,19 +649,16 @@ form {
 
 /* Admin --------------------------------------------- */
 
-.project-edit{
-  display:grid;
+.project-edit {
+  display: grid;
   grid-template-columns: 1fr;
-  
 }
 
-.project-edit-buttons{
-display: flex;
+.project-edit-buttons {
+  display: flex;
   grid-template-columns: auto 1fr;
 
   align-items: center;
-
- 
 
   padding: 10px;
 
@@ -577,35 +666,32 @@ display: flex;
   width: 100%;
 }
 
-.project-edit-buttons button{
-  width:49%;
-   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
-   height:50px;
+.project-edit-buttons button {
+  width: 49%;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+  height: 50px;
 }
 
-.project-edit-buttons button:hover{
-cursor: pointer;
+.project-edit-buttons button:hover {
+  cursor: pointer;
 }
 
-.project-link{
-  height:min-content;
+.project-link {
+  height: min-content;
 }
 
-.project .project-link .project-image{
-  height:initial;
-  
+.project .project-link .project-image {
+  height: initial;
 }
 
-.project-link:hover{
-cursor: initial;
-padding-left:initial;
-
+.project-link:hover {
+  cursor: initial;
+  padding-left: initial;
 }
 
-.formholder.resume{
+.formholder.resume {
   margin: 0 auto;
-  width:min-content;
-  
+  width: min-content;
 }
 
 .formholder.resume .input-group {
@@ -623,4 +709,3 @@ padding-left:initial;
 .formholder.resume .submit:hover {
   border-color: #d6d8fa;
 }
-
