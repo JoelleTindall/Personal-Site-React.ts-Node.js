@@ -10,6 +10,10 @@ h1:hover {
   cursor: default;
 }
 
+form {
+  position: relative;
+}
+
 .section {
   padding-bottom: 30px;
   padding-top: 20px;
@@ -720,6 +724,10 @@ form {
 
 /* OtherStuff --------------------------------------------- */
 
+#otherstuff{
+  position: relative;
+}
+
 .underconstruction {
   width: 100%;
   text-align: center;
@@ -783,6 +791,7 @@ form {
 .formholder.resume {
   margin: 0 auto;
   width: min-content;
+  position: relative;
 }
 
 .formholder.resume .input-group {
@@ -806,6 +815,7 @@ form {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  position: relative;
 }
 
 .admin-controls button {
