@@ -1,7 +1,7 @@
 import axios from "axios";
 
 interface Props {
-  caption: string;
+  caption?: string;
 }
 
 const DownloadButton: React.FC<Props> = ({caption}) => {

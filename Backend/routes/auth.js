@@ -58,14 +58,14 @@ router.post("/generateToken", async (req, res) => {
         // finally send it to the frontend
         res.status(200).json({ token });
       } else {
-        res.status(500).send("Bad login");
+        res.status(500).send("Bad user/password");
       }
     } else {
       res.status(500).send("Bad user/password");
     }
   } catch (err) {
     console.error(err);
-    res.status(500).send("couldn't connect to db");
+    res.status(500).send("Couldn't connect..");
   }
 });
 
@@ -77,15 +77,15 @@ router.get("/validateToken", (req, res) => {
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    console.log("No token found in Authorization header");
     return res.status(401).json({ message: "Token missing" });
   }
 
   try {
     const verified = jwt.verify(token, jwtSecretKey);
+    if (verified){
     return res.send("Successfully Verified");
+    }
   } catch (error) {
-    console.log("JWT verification error:", error.message);
     return res.status(401).json({ message: error.message });
   }
 });

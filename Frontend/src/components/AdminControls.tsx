@@ -15,7 +15,7 @@ const AdminControls: React.FC<Props> = ({onSelection}) => {
     onSelection(selection);
   };
   return (
-    <div>
+    <div className="admin-controls">
       <button onClick={()=>handleClick("upProject")}>Upload Project</button>
       <button onClick={()=>handleClick("editProject")}>Edit/Remove Project</button>
       <button onClick={()=>handleClick("upResume")}>Upload Resume</button>

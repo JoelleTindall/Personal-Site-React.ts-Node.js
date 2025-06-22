@@ -23,6 +23,23 @@ h1:hover {
   border-radius: 50px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+  position: relative;
+}
+
+.contentblock::before {
+  content: "";
+  background-color: transparent;
+  /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E"); */
+  background-image: url(../assets/images/paper.jpg);
+  background-repeat: repeat;
+  background-size: 100%;
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
 }
 
 .header {
@@ -34,6 +51,22 @@ h1:hover {
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   border-radius: 50px 50px 0 0;
   margin: auto;
+  position: relative;
+}
+
+.header::before {
+  content: "";
+  background-color: transparent;
+  background-image: url(../assets/images/paper.jpg);
+  background-repeat: repeat;
+  background-size: 100%;
+  opacity: 0.3;
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
 }
 
 .header p {
@@ -64,6 +97,7 @@ h1:hover {
   width: 100%;
   max-width: 580px;
   object-fit: cover;
+  position: relative;
 }
 
 .side-content h1 {
@@ -73,21 +107,27 @@ h1:hover {
   border: 10px solid rgb(99, 220, 205);
   border-radius: 50px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
 }
 
 .corner-border {
   position: relative;
-
   border-radius: 5px;
-
   background: #60108eaa;
-
   width: 60%;
   margin: 30px auto;
   margin-top: 0;
   border-radius: 5px;
   box-sizing: border-box;
+}
+
+.about .corner-border {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+  background-blend-mode: darken;
+}
+
+.contact .corner-border {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 600'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3C/svg%3E");
+  background-blend-mode: darken;
 }
 
 .corner-border::before,
@@ -128,14 +168,13 @@ h1:hover {
 }
 
 /* ABOUT --------------------------------------------- */
-
 .about {
-  background-color: white;
+  background-color: rgb(245, 245, 245);
 }
 
 .me {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
+  border: 10px solid rgb(99, 220, 205);
 }
 
 .textblock {
@@ -146,6 +185,7 @@ h1:hover {
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
 .textblock p {
   padding: 10px;
   font-size: 1.125rem;
@@ -161,7 +201,8 @@ h1:hover {
   transition: border 200ms;
 }
 
-.textblock p:hover {
+.textblock p:hover,
+.textblock p:active {
   border: 7px solid #a196ca;
   cursor: default;
 }
@@ -187,7 +228,8 @@ h1:hover {
   transition: background-size 400ms;
 }
 
-.textblock a:hover {
+.textblock a:hover,
+.textblock a:active {
   background-size: 0 3px, 100% 3px;
 }
 
@@ -199,29 +241,24 @@ h1:hover {
   background-color: #eef1ff;
   color: rgba(0, 0, 0, 0.7);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-
-  /* max-width: 100%; */
-  /* width: calc(100% - 39.4px); */
 }
 .about-icons .about-icon-holder {
   display: flex;
   flex-wrap: nowrap;
-  width:100%;
+  width: 100%;
   text-align: center;
   justify-content: center;
   align-items: stretch;
   align-content: stretch;
-  
 }
 
-.about-icons .about-icon-holder div{
-  flex:1;
-    min-width: 33.33%;
+.about-icons .about-icon-holder div {
+  flex: 1;
+  min-width: 33.33%;
   max-width: 33.33%;
   /* width:100%; */
-  padding:10px;
+  padding: 10px;
   border-radius: 20px;
-  
 }
 
 .about-icon-holder figcaption {
@@ -231,28 +268,24 @@ h1:hover {
 
 .about-icons a {
   background: initial;
- 
 }
 
-.about-icons .about-icon-holder div{
+.about-icons .about-icon-holder div {
   border: 2px solid rgba(255, 255, 255, 0);
-     transition: box-shadow 200ms, background-color 200ms, transform 200ms, border 200ms;
-     
+  transition: box-shadow 200ms, background-color 200ms, transform 200ms,
+    border 200ms;
 }
-.about-icons .about-icon-holder div svg{
-     transition: color 1000ms;
-     max-height: 150px;
-     
+.about-icons .about-icon-holder div svg {
+  transition: color 1000ms;
+  max-height: 150px;
 }
 
-
-.about-icon-holder div:hover{
-     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  /* background-color: rgba(255, 255, 255, 0.452); */
+.about-icon-holder div:hover,
+.about-icon-holder div:active {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transform: rotate(2deg);
   border: 2px solid #fb67cc;
-    /* svg{ color:blue}; */
-    }
+}
 
 .about-icons a svg {
   width: 100%;
@@ -286,7 +319,8 @@ h1:hover {
   transition: border 200ms, transform 200ms;
 }
 
-.skill:hover {
+.skill:hover,
+.skill:active {
   border: 2px solid #fb67cc;
   transform: rotate(2deg);
 }
@@ -303,6 +337,9 @@ h1:hover {
 
 .projects {
   background-color: #ede8ff;
+}
+
+.projects:before {
 }
 
 .project-list {
@@ -333,7 +370,8 @@ h1:hover {
   border-color: #ffc400;
 }
 
-.project.playdate:hover {
+.project.playdate:hover,
+.project.playdate:active {
   background-color: #ffe048;
   border: 8px solid #5d5707;
 }
@@ -401,7 +439,8 @@ h1:hover {
   transition: letter-spacing 500ms;
 }
 
-.project:hover a .project-info h3 {
+.project:hover a .project-info h3,
+.project:active a .project-info h3 {
   letter-spacing: 0.1em;
 }
 
@@ -451,6 +490,44 @@ h1:hover {
   }
 }
 
+@media (max-width: 700px) {
+  .project-list .project a .project-image img {
+    min-height: 100%;
+  }
+
+  h1 {
+    font-size: 10cqw;
+  }
+
+  h1 svg {
+    width: 10cqw;
+  }
+
+  .skills {
+    padding: 4px;
+  }
+
+  .skill {
+    margin: 5px;
+    padding: 5px;
+  }
+
+  .contact .formholder {
+    padding: 12px;
+  }
+
+  .textblock p {
+    margin: 8px;
+    font-size: 1rem;
+    /* text-align: center; */
+  }
+
+  .textblock .about-icons {
+    margin: 8px;
+  }
+}
+
+/* 
 @media (max-width: 380px) {
   .project-list .project a .project-image img {
     min-height: 100%;
@@ -461,28 +538,31 @@ h1:hover {
   }
 
   h1 svg {
-    width:10cqw;
+    width: 10cqw;
+  }
+
+  .skills{
+    padding:4px;
   }
 
   .skill {
     margin: 5px;
-    padding:5px;
+    padding: 5px;
   }
 
-  .corner-border .formholder {
+  .contact .formholder {
     padding: 12px;
   }
 
   .textblock p {
-    margin:8px;
+    margin: 8px;
     font-size: 1rem;
-    /* text-align: center; */
   }
 
-  .textblock .about-icons{
-    margin:8px;
+  .textblock .about-icons {
+    margin: 8px;
   }
-}
+} */
 
 /* CONTACT --------------------------------------------- */
 .contact {
@@ -586,7 +666,8 @@ form {
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.btnholder .submitbtn:hover {
+.btnholder .submitbtn:hover,
+.btnholder .submitbtn:active {
   cursor: pointer;
   width: 220px;
 }
@@ -617,7 +698,14 @@ form {
   transition: rotate 200ms;
 }
 
-.form-success .success-msg:hover {
+.form-success .success-msg img {
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.form-success .success-msg:hover,
+.form-success .success-msg:active {
   rotate: 1deg;
 }
 
@@ -635,13 +723,14 @@ form {
 .underconstruction {
   width: 100%;
   text-align: center;
-  /* display: block; */
-  /* flex-wrap: wrap; */
-  /* flex-direction: column; */
-  /* justify-content: center; */
-  /* text-align: center; */
-  /* align-items: center; */
+  position: relative;
 }
+
+.underconstruction:hover,
+.underconstruction *:hover {
+  cursor: pointer;
+}
+
 .underconstruction img {
   margin: 0 auto;
   max-width: 200px;
@@ -672,7 +761,8 @@ form {
   height: 50px;
 }
 
-.project-edit-buttons button:hover {
+.project-edit-buttons button:hover,
+.project-edit-buttons button:active {
   cursor: pointer;
 }
 
@@ -684,7 +774,8 @@ form {
   height: initial;
 }
 
-.project-link:hover {
+.project-link:hover,
+.project-link:active {
   cursor: initial;
   padding-left: initial;
 }
@@ -706,6 +797,25 @@ form {
   background-color: #4f8c00;
 }
 
-.formholder.resume .submit:hover {
+.formholder.resume .submit:hover,
+.formholder.resume .submit:active {
   border-color: #d6d8fa;
+}
+
+.admin-controls {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.admin-controls button {
+  margin: 5px;
+  /* height:100%; */
+  border-radius: 5px;
+}
+
+.admin-controls button:hover,
+.admin-controls button:active {
+  cursor: pointer;
+  border-color: plum;
 }

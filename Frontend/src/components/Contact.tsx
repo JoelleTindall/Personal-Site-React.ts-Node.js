@@ -1,10 +1,14 @@
 import { useRef, useState } from "react";
+import workcat from "../assets/images/workcat.gif";
 
 const ContactPage: React.FC = () => {
+
   const myRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const [height, setHeight] = useState(0);
-  const [formSent, setFormSent] = useState(false);
+    const [status, setStatus] = useState<
+    'initial' | 'sending' | 'success' | 'fail'
+  >('initial');
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +22,8 @@ const ContactPage: React.FC = () => {
     const formValues = Object.fromEntries(formData);
 
     try {
+      setHeight(formRef.current!.clientHeight);
+      setStatus('sending');
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -26,15 +32,17 @@ const ContactPage: React.FC = () => {
         body: JSON.stringify(formValues),
       });
       if (response.ok) {
-        console.log("Form submitted successfully!");
+        setStatus('success');
+      
       } else {
+        setStatus('fail');
         console.error("Form submission failed.");
       }
     } catch (error) {
+       setStatus('fail');
       console.error("Error submitting form:", error);
     }
-    setHeight(formRef.current!.clientHeight);
-    setFormSent(true);
+    
   };
 
   return (
@@ -51,7 +59,7 @@ const ContactPage: React.FC = () => {
         </div>
         <div className="corner-border">
           <div className="formholder">
-            {!formSent ? (
+            {status=='initial' ? (
               <form
                 className="contactform"
                 ref={formRef}
@@ -70,6 +78,7 @@ const ContactPage: React.FC = () => {
                     }
                     type="text"
                     placeholder="Name McNamerson"
+                    required
                   ></input>
                 </div>
                 <div className="label">
@@ -85,6 +94,7 @@ const ContactPage: React.FC = () => {
                     }
                     type="email"
                     placeholder="cool@example.com"
+                    required
                   ></input>
                 </div>
                 <div className="label">
@@ -99,6 +109,7 @@ const ContactPage: React.FC = () => {
                       setFormData({ ...formData, message: e.target.value })
                     }
                     placeholder="What do you think?"
+                    required
                   ></textarea>
                 </div>
                 <div className="btnholder">
@@ -118,10 +129,9 @@ const ContactPage: React.FC = () => {
               </form>
             ) : (
               <div className="form-success" style={{ height: `${height}px` }}>
-                <div className="success-msg">
-                  <h2>Message Sent!</h2>
-                  <p>I'll get back to you soon.</p>
-                </div>
+                
+                  <Result status={status} setStatus={setStatus}/>
+                
               </div>
             )}
           </div>
@@ -130,4 +140,17 @@ const ContactPage: React.FC = () => {
     </div>
   );
 };
+
+const Result = ({ status,setStatus }: { status: string, setStatus: React.Dispatch<React.SetStateAction<"initial" | "sending" | "success" | "fail">> }) => {
+  if (status === 'success') {
+    return<div className="success-msg"><h2>Message Sent!</h2><p>I'll get back to you soon.</p></div>;
+  } else if (status === 'fail') {
+    return <div className="success-msg"><h2>Failed!</h2><a onClick={()=>{setStatus('initial')}}>Maybe try again?</a></div>;
+  } else if (status === 'sending') {
+    return <div className="success-msg"><h2>Sending...</h2><p><img src={workcat}/></p></div>;
+  } else {
+    return null;
+  }
+};
+
 export default ContactPage;

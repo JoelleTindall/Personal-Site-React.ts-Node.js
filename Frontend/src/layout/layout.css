@@ -44,7 +44,7 @@ nav .brand a {
   transition: text-shadow 0.3s, color 0.3s;
 }
 
-nav .brand a:hover {
+nav .brand a:hover,nav .brand a:active {
   box-shadow: none;
   background: none;
   color: #2f6daf;
@@ -102,19 +102,19 @@ div.color3 {
 div.color4 {
   background: #bfecff;
 }
-.color1:hover {
+.color1:hover,.color1:active {
   background: #ffccea;
 }
-.color2:hover {
+.color2:hover,.color2:active {
   background: #fff6e3;
 }
-.color3:hover {
+.color3:hover,.color3:active {
   background: #cdc1ff;
 }
-.color4:hover {
+.color4:hover, .color4:active {
   background: #bfecff;
 }
-.color5:hover {
+.color5:hover, .color5:active {
   color: initial;
   background: #eefff8;
 }
@@ -127,20 +127,14 @@ nav a.mascot img {
   height: 40px;
 }
 
-/* nav div.resume-button {
-  min-width: 60px;
-}
-nav div.resume-button *{
-  min-width:100px;
-  color:brown;
-} */
+
 .hidden {
   display: none;
 }
 
 /* MAIN CONTENT ------------------------------------------------ */
 
-a:hover {
+a:hover,a:active {
   cursor: pointer;
 }
 .row {
@@ -215,7 +209,7 @@ footer a img {
   margin: 0 auto;
   transition: transform 500ms;
 }
-footer a:hover {
+footer a:hover, footer a:active {
   img {
     transform: rotate(360deg);
   }

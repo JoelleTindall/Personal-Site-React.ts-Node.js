@@ -50,14 +50,15 @@ function Login() {
       })
       .catch((error) => {
         console.error(error);
-        setError("Error logging in.");
+        setError("Nope.");
       });
   };
 
   return (
-    <div className="containerbox">
-      <h3>Login</h3>
-      <form onSubmit={handleLogin}>
+    <div className="containerbox" style={{'width':'fit-content','margin':'auto'}}>
+     
+      <form style={{'backgroundColor':'white'}} onSubmit={handleLogin}>
+         <h3>Login</h3>
         <div>
           <label className="forminput" htmlFor="username">
             Username:
@@ -84,12 +85,14 @@ function Login() {
             onChange={handleChange}
           />
         </div>
-        <div>
-          <button type="submit">Login</button>
+        <div style={{'textAlign':'center'}}>
+          <button type="submit" style={{'width':'100%','padding':'10px','margin':'15px auto'}}>Login</button>
+        {error && <p className="error" style={{'color':'red'}}>{error}</p>}
         </div>
+         
       </form>
 
-      {error && <p className="error">{error}</p>}
+     
     </div>
   );
 }
